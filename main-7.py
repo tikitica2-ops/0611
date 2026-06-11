@@ -130,6 +130,19 @@ if uploaded_file is not None:
                     document_chain
                 )
 
-                result = qa_chain.invoke(   {  "input": question   }    )
-                st.write(  result["answer"]    )
+                # result = qa_chain.invoke(   {  "input": question   }    )
+                # st.write(  result["answer"]    )
+
+                # 변경할 코드:
+# 1. 스트리밍을 처리할 제너레이터 함수를 정의합니다.
+def answer_stream():
+    # invoke 대신 stream을 사용합니다.
+    for chunk in qa_chain.stream({"input": question}):
+        # create_retrieval_chain은 answer 외에도 context 등을 함께 반환하므로, 
+        # 그중 'answer' 조각이 있을 때만 추출하여 내보냅니다.
+        if "answer" in chunk:
+            yield chunk["answer"]
+
+# 2. Streamlit의 write_stream 함수에 전달하여 화면에 한 글자씩 뿌려줍니다.
+st.write_stream(answer_stream())
 
