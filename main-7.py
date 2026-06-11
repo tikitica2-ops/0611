@@ -132,7 +132,7 @@ if uploaded_file is not None:
 
                 # result = qa_chain.invoke(   {  "input": question   }    )
                 # st.write(  result["answer"]    )
-기존 코드:
+# 기존 코드:
 # result = qa_chain.invoke({ "input": question })
 # st.write( result["answer"] )
 
