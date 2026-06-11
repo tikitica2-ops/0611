@@ -130,5 +130,15 @@ if uploaded_file is not None:
                     document_chain
                 )
 
-                result =qa_chain.invoke(    {    "input": question    }      )
-                st.write(  result["answer"]    )
+                # result =qa_chain.invoke(    {    "input": question    }      )
+                # st.write(  result["answer"]    )
+
+
+
+
+                def stream_answer():
+                    for chunk in qa_chain.stream({"input": question}):
+                        if answer_chunk := chunk.get("answer"):
+                            yield answer_chunk
+
+                st.write_stream(stream_answer)
