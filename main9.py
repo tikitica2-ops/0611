@@ -107,7 +107,8 @@ if uploaded_file is not None:
                 handler = StreamHandler(      chat_box       )
 
                 llm = ChatOpenAI(
-                    model="gpt-4o-mini",
+                    # model="gpt-4o-mini",
+                    model="gpt-4.1-mini",
                     temperature=0,
                     api_key=openai_key,
                     streaming=True,
