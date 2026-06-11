@@ -1,0 +1,10 @@
+langchain-community
+langchain-openai 
+langchain-chroma 
+dotenv
+streamlit
+sentence-transformers
+anthropic
+numpy
+pypdf
+python-docx
